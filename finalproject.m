@@ -38,7 +38,7 @@ for i = 1:length(dt_list)
         t = t + dt;
 
         % RK4 propagation
-        f = @(V) (V0 - V_rk) / (R * C);
+        f = @(V) (V0 - V) / (R * C);
         k1 = f(V_rk);
         k2 = f(V_rk + dt * k1 / 2);
         k3 = f(V_rk + dt * k2 / 2);
@@ -49,6 +49,7 @@ for i = 1:length(dt_list)
     % --- DISCHARGING LOOP ---
     t = 0;
     V_fe = V0; % Starts fully charged at V0 = 10V
+    V_rk = V0;
     t_discharge = [];
     V_discharge_fe = [];
     V_discharge_rk = [];
